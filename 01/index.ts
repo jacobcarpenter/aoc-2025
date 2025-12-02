@@ -14,10 +14,7 @@ if (import.meta.main) {
 		({ dial, zeros }, { direction, turns }) => {
 			const value = rotateBy(dial, direction, turns);
 			const zerosToAdd = value === 0 ? 1 : 0;
-			return {
-				dial: value,
-				zeros: zeros + zerosToAdd,
-			};
+			return { dial: value, zeros: zeros + zerosToAdd };
 		},
 		{ dial: 50, zeros: 0 },
 	);
@@ -26,10 +23,7 @@ if (import.meta.main) {
 		({ dial, zeros }, { direction, turns }) => {
 			const value = rotateBy(dial, direction, turns);
 			const zerosToAdd = countPassedZeros(dial, direction, turns);
-			return {
-				dial: value,
-				zeros: zeros + zerosToAdd,
-			};
+			return { dial: value, zeros: zeros + zerosToAdd };
 		},
 		{ dial: 50, zeros: 0 },
 	);
