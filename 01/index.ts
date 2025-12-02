@@ -24,7 +24,8 @@ if (import.meta.main) {
 
 	const part2 = data.reduce(
 		({ dial, zeros }, { direction, turns }) => {
-			const { value, zeros: passedZeros } = rotateByWithZerosCount(dial, direction, turns);
+			const value = rotateBy(dial, direction, turns);
+			const passedZeros = countPassedZeros(dial, direction, turns);
 			return {
 				dial: value,
 				zeros: zeros + passedZeros,
@@ -44,14 +45,11 @@ export function rotateBy(initial: number, direction: "L" | "R", turns: number) {
 	return (initial + rotationAdjustment + 100) % 100;
 }
 
-export function rotateByWithZerosCount(initial: number, direction: "L" | "R", turns: number) {
+export function countPassedZeros(initial: number, direction: "L" | "R", turns: number) {
 	const distanceToZero = (direction === "L" ? initial : 100 - initial) % 100;
-	const zeros =
-		distanceToZero === 0 ? Math.trunc((turns - 1) / 100)
-		: distanceToZero <= turns ? Math.trunc((turns - distanceToZero) / 100) + 1
-		: 0;
-	return {
-		value: rotateBy(initial, direction, turns),
-		zeros,
-	};
+	return (
+		distanceToZero > turns ? 0
+		: distanceToZero === 0 ? Math.trunc(turns / 100)
+		: Math.trunc((turns - distanceToZero) / 100) + 1
+	);
 }
