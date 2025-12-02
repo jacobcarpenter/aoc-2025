@@ -6,11 +6,11 @@ if (import.meta.main) {
 		const matched = line.match(/^(?<direction>[LR])(?<turns>\d+)$/)!;
 		return {
 			direction: matched.groups!.direction as "L" | "R",
-			turns: parseInt(matched.groups!.turns!),
+			turns: Number(matched.groups!.turns!),
 		};
 	});
 
-	const { zeros: part1 } = data.reduce(
+	const part1 = data.reduce(
 		({ dial, zeros }, { direction, turns }) => {
 			const value = rotateBy(dial, direction, turns);
 			const zerosToAdd = value === 0 ? 1 : 0;
@@ -22,7 +22,7 @@ if (import.meta.main) {
 		{ dial: 50, zeros: 0 },
 	);
 
-	const { zeros: part2 } = data.reduce(
+	const part2 = data.reduce(
 		({ dial, zeros }, { direction, turns }) => {
 			const { value, zeros: passedZeros } = rotateByWithZerosCount(dial, direction, turns);
 			return {
@@ -33,7 +33,10 @@ if (import.meta.main) {
 		{ dial: 50, zeros: 0 },
 	);
 
-	console.log({ part1, part2 });
+	console.log({
+		part1: part1.zeros,
+		part2: part2.zeros,
+	});
 }
 
 export function rotateBy(initial: number, direction: "L" | "R", turns: number) {
