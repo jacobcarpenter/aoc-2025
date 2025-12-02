@@ -25,10 +25,10 @@ if (import.meta.main) {
 	const part2 = data.reduce(
 		({ dial, zeros }, { direction, turns }) => {
 			const value = rotateBy(dial, direction, turns);
-			const passedZeros = countPassedZeros(dial, direction, turns);
+			const zerosToAdd = countPassedZeros(dial, direction, turns);
 			return {
 				dial: value,
-				zeros: zeros + passedZeros,
+				zeros: zeros + zerosToAdd,
 			};
 		},
 		{ dial: 50, zeros: 0 },
