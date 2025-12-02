@@ -47,11 +47,9 @@ export function rotateBy(initial: number, direction: "L" | "R", turns: number) {
 export function rotateByWithZerosCount(initial: number, direction: "L" | "R", turns: number) {
 	const distanceToZero = (direction === "L" ? initial : 100 - initial) % 100;
 	const zeros =
-		distanceToZero === 0
-			? Math.trunc((turns - 1) / 100)
-			: distanceToZero <= turns
-				? Math.trunc((turns - distanceToZero) / 100) + 1
-				: 0;
+		distanceToZero === 0 ? Math.trunc((turns - 1) / 100)
+		: distanceToZero <= turns ? Math.trunc((turns - distanceToZero) / 100) + 1
+		: 0;
 	return {
 		value: rotateBy(initial, direction, turns),
 		zeros,

@@ -6,6 +6,7 @@ const config = {
 	useTabs: true,
 	tabWidth: 4,
 	printWidth: 100,
+	experimentalTernaries: true,
 	overrides: [
 		{
 			files: ["*.y?(a)ml"],
