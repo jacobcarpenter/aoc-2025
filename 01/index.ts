@@ -1,14 +1,16 @@
+import { createParser } from "../utility";
+
 if (import.meta.main) {
 	const file = Bun.file(`${import.meta.dir}/input.txt`);
 	const input = await file.text();
 	const lines = input.split("\n");
-	const data = lines.map((line) => {
-		const matched = line.match(/^(?<direction>[LR])(?<turns>\d+)$/)!;
-		return {
-			direction: matched.groups!.direction as "L" | "R",
-			turns: Number(matched.groups!.turns!),
-		};
-	});
+
+	const data = lines.map(
+		createParser(/^(?<direction>[LR])(?<turns>\d+)$/, {
+			direction: (x) => x as "L" | "R",
+			turns: Number,
+		}),
+	);
 
 	const part1 = data.reduce(
 		({ dial, zeros }, { direction, turns }) => {
