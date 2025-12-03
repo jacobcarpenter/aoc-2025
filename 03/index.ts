@@ -29,15 +29,9 @@ if (import.meta.main) {
 								value > acc.value ? { value, valueIndex } : acc,
 							{ value: -1, valueIndex: -1 },
 						);
-					return {
-						digits: [...digits, value],
-						start: start + valueIndex + 1,
-					};
+					return { digits: [...digits, value], start: start + valueIndex + 1 };
 				},
-				{
-					digits: [] as number[],
-					start: 0,
-				},
+				{ digits: [] as number[], start: 0 },
 			);
 
 			return digits.reduce(
