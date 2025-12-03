@@ -21,9 +21,9 @@ if (import.meta.main) {
 	const part2 = data
 		.map((bank) => {
 			const { digits } = Array.from({ length: 12 }).reduce(
-				({ digits, start }, _, index, { length }) => {
+				({ digits, start }: { digits: number[]; start: number }, _, index, { length }) => {
 					const { value, valueIndex } = bank
-						.slice(start, -(length - index) + 1 || undefined)
+						.slice(start, -(length - 1 - index) || undefined)
 						.reduce(
 							(acc, value, valueIndex) =>
 								value > acc.value ? { value, valueIndex } : acc,
@@ -31,11 +31,11 @@ if (import.meta.main) {
 						);
 					return { digits: [...digits, value], start: start + valueIndex + 1 };
 				},
-				{ digits: [] as number[], start: 0 },
+				{ digits: [], start: 0 },
 			);
 
 			return digits.reduce(
-				(acc, curr, index, { length }) => acc + Math.pow(10, length - index - 1) * curr,
+				(acc, curr, index, { length }) => acc + Math.pow(10, length - 1 - index) * curr,
 				0,
 			);
 		})
