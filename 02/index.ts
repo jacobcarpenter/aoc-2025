@@ -29,18 +29,17 @@ if (import.meta.main) {
 }
 
 export function isInvalid1(value: number) {
-	const numberString = value.toString();
+	const numbers = value.toString();
 	return (
-		numberString.length % 2 === 0 &&
-		numberString.substring(0, numberString.length / 2) ===
-			numberString.substring(numberString.length / 2)
+		numbers.length % 2 === 0 &&
+		numbers.substring(0, numbers.length / 2) === numbers.substring(numbers.length / 2)
 	);
 }
 
 export function isInvalid2(value: number) {
-	const numberString = value.toString();
-	for (let end = Math.trunc(numberString.length / 2); end > 0; --end) {
-		if (RegExp(`^(${RegExp.escape(numberString.substring(0, end))}){2,}$`).test(numberString)) {
+	const numbers = value.toString();
+	for (let end = Math.trunc(numbers.length / 2); end > 0; --end) {
+		if (RegExp(`^(${RegExp.escape(numbers.substring(0, end))}){2,}$`).test(numbers)) {
 			return true;
 		}
 	}
