@@ -34,4 +34,4 @@ It does seem like TypeScript's inference is working better than I've remembered.
 
 ## Math over loops
 
-`rotateBy` and `countPassedZeros` use math + logic to produce the new results. It feels "right" to do that, but there's some pretty dense logic that has to be puzzled over to mentally debug all the paths. I'm sure there are dozens of different ways to express these computations, and it seems likely that serveral are better than what I have.
+`rotateBy` and `countPassedZeros` use math + logic to produce the new results. It feels "right" to do that, but there's some pretty dense logic that has to be puzzled over to mentally debug all the paths. I'm sure there are dozens of different ways to express these computations, and it seems likely that several are better than what I have.
