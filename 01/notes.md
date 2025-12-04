@@ -24,7 +24,7 @@ return {
 };
 ```
 
-I really like parsing with named capture groups. I keep thinking that it might be nice to formalize this oft-recurring pattern with a utility but have yet to do so.
+I really like parsing with named capture groups. I keep thinking that it might be nice to formalize this oft-recurring pattern with a utility ~~but have yet to do so~~. [Edit: I did; it's `createParser` in `utility`, and it's pretty great in the circumstances I've used so far.]
 
 ## `.reduce((acc, curr) => (...), initial)`
 
