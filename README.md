@@ -1,15 +1,5 @@
 # aoc-2025
 
-To install dependencies:
+Solutions for https://adventofcode.com/2025.
 
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.3.0. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+See [notes.md](notes.md) for thoughts/observations/justifications for stuff you might come across.
