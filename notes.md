@@ -88,7 +88,7 @@ Building the number from the array of digits would've been very easy—and proba
 
 ### No BigInt yet
 
-I was on the lookout for potentially needing `BigInt`, but every thing stayed comfortably under `Number.MAX_SAFE_INTEGER`.
+I was on the lookout for potentially needing `BigInt`, but everything stayed comfortably under `Number.MAX_SAFE_INTEGER`.
 
 </details>
 
