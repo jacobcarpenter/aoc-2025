@@ -1,5 +1,3 @@
-import { seq, range } from "../utility";
-
 type Grid<T> = { cells: T[]; width: number; height: number };
 
 const file = Bun.file(`${import.meta.dir}/input.txt`);
@@ -56,10 +54,6 @@ function isAccessible(grid: Grid<string>, x: number, y: number) {
 	);
 }
 
-function* enumerateGrid(ys: () => Iterable<number>, xs: () => Iterable<number>) {
-	yield* Iterator.from(ys()).flatMap((y) => Iterator.from(xs()).map((x) => ({ x, y })));
-}
-
 function* getNeighbors<T>(grid: Grid<T>, x: number, y: number) {
 	yield* enumerateGrid(range(-1, 1), range(-1, 1))
 		.filter(({ x, y }) => !(x === 0 && y === 0))
@@ -80,4 +74,24 @@ function setCell<T>({ cells, width, height }: Grid<T>, x: number, y: number, val
 	}
 
 	return { cells: cells.toSpliced(y * width + x, 1, value), width, height };
+}
+
+function* enumerateGrid(ys: () => Generator<number>, xs: () => Generator<number>) {
+	yield* ys().flatMap((y) => xs().map((x) => ({ x, y })));
+}
+
+function seq(length: number, start = 0, step = 1) {
+	return function* () {
+		for (let value = start; value < length; value += step) {
+			yield value;
+		}
+	};
+}
+
+function range(start: number, end: number, step = 1) {
+	return function* () {
+		for (let value = start; value <= end; value += step) {
+			yield value;
+		}
+	};
 }
