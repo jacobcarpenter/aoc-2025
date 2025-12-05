@@ -28,6 +28,9 @@ Things I'll definitely do (after using AI):
 
 ## `01`
 
+<details>
+<summary>Day 1 notes (possible spoilers)</summary>
+
 ### `import.meta.main`
 
 ```ts
@@ -64,7 +67,12 @@ It does seem like TypeScript's inference is working better than I've remembered.
 
 `rotateBy` and `countPassedZeros` use math + logic to produce the new results. It feels "right" to do that, but there's some pretty dense logic that has to be puzzled over to mentally debug all the paths. I'm sure there are dozens of different ways to express these computations, and it seems likely that several are better than what I have.
 
+</details>
+
 ## `03`
+
+<details>
+<summary>Day 3 notes (possible spoilers)</summary>
 
 ### `part2` is masochistic
 
@@ -81,3 +89,5 @@ Building the number from the array of digits would've been very easy—and proba
 ### No BigInt yet
 
 I was on the lookout for potentially needing `BigInt`, but every thing stayed comfortably under `Number.MAX_SAFE_INTEGER`.
+
+</details>
