@@ -103,7 +103,7 @@ Oh boy, all the memes with this one! I love these grid based traversal ones, and
 
 There's plenty already written about how to store/address 2D data in a 1D array. The math is very straightforward, and you can avoid multidimensional JS arrays.
 
-### `enumerateGrid`
+### `enumerateGridCoordinates`
 
 Generates a [Cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) of the two sequences. For this helper, we put the `ys` generator first, emphasizing that the sequence is generated in [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order).
 
