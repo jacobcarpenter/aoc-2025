@@ -11,14 +11,14 @@ const grid = input.split("\n").reduce(
 		};
 	},
 	{ cells: [] as string[], width: 0, height: 0 },
-);
+) satisfies Grid<string>;
 
-const part1 = enumerateGrid(seq(grid.height), seq(grid.width))
+const part1 = enumerateGridCoordinates(seq(grid.height), seq(grid.width))
 	.filter(({ x, y }) => isAccessible(grid, x, y))
 	.reduce((acc) => acc + 1, 0);
 
 const part2 = (function recursivelyRemoveAccessible(grid: Grid<string>, totalRemoved = 0): number {
-	const { nextGrid, removed } = enumerateGrid(seq(grid.height), seq(grid.width))
+	const { nextGrid, removed } = enumerateGridCoordinates(seq(grid.height), seq(grid.width))
 		.filter(({ x, y }) => isAccessible(grid, x, y))
 		.reduce(
 			({ nextGrid, removed }, { x, y }) => ({
@@ -45,7 +45,7 @@ function isAccessible(grid: Grid<string>, x: number, y: number) {
 }
 
 function* getNeighbors<T>(grid: Grid<T>, x: number, y: number) {
-	yield* enumerateGrid(range(-1, 1), range(-1, 1))
+	yield* enumerateGridCoordinates(range(-1, 1), range(-1, 1))
 		.filter(({ x, y }) => !(x === 0 && y === 0))
 		.map(({ x: offsetX, y: offsetY }) => getCell(grid, offsetX + x, offsetY + y));
 }
@@ -66,7 +66,7 @@ function setCell<T>({ cells, width, height }: Grid<T>, x: number, y: number, val
 	return { cells: cells.toSpliced(y * width + x, 1, value), width, height };
 }
 
-function* enumerateGrid(ys: () => Generator<number>, xs: () => Generator<number>) {
+function* enumerateGridCoordinates(ys: () => Generator<number>, xs: () => Generator<number>) {
 	yield* ys().flatMap((y) => xs().map((x) => ({ x, y })));
 }
 
