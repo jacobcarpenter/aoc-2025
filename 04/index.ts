@@ -17,25 +17,19 @@ const part1 = enumerateGrid(seq(grid.height), seq(grid.width))
 	.filter(({ x, y }) => isAccessible(grid, x, y))
 	.toArray().length;
 
-// not immediately obvious how to purely functionally express part2, so ...
-let part2 = 0;
-let part2Grid = grid;
-let removedInStep: number;
-
-do {
-	({ nextGrid: part2Grid, removed: removedInStep } = enumerateGrid(
-		seq(grid.height),
-		seq(grid.width),
-	).reduce(
+const part2 = (function recursivelyRemoveAccessible(grid: Grid<string>, totalRemoved = 0): number {
+	const { nextGrid, removed } = enumerateGrid(seq(grid.height), seq(grid.width)).reduce(
 		(acc, { x, y }) =>
-			isAccessible(part2Grid, x, y) ?
+			isAccessible(grid, x, y) ?
 				{ nextGrid: setCell(acc.nextGrid, x, y, "x"), removed: acc.removed + 1 }
 			:	acc,
-		{ nextGrid: part2Grid, removed: 0 },
-	));
+		{ nextGrid: grid, removed: 0 },
+	);
 
-	part2 += removedInStep;
-} while (removedInStep);
+	return removed === 0 ? totalRemoved : (
+			recursivelyRemoveAccessible(nextGrid, totalRemoved + removed)
+		);
+})(grid);
 
 console.log({ part1, part2 });
 
