@@ -20,8 +20,8 @@ if (import.meta.main) {
 
 	const part2 = data
 		.map((bank) => {
-			const { digits } = Array.from({ length: 12 }).reduce(
-				({ digits, start }: { digits: number[]; start: number }, _, index, { length }) => {
+			const { digits } = Array.from<undefined>({ length: 12 }).reduce(
+				({ digits, start }, _, index, { length }) => {
 					const { value, valueIndex } = bank
 						.slice(start, -(length - 1 - index) || undefined)
 						.reduce(
@@ -31,7 +31,7 @@ if (import.meta.main) {
 						);
 					return { digits: [...digits, value], start: start + valueIndex + 1 };
 				},
-				{ digits: [], start: 0 },
+				{ digits: [] as number[], start: 0 },
 			);
 
 			return digits.reduce(
