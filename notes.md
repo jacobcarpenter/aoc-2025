@@ -109,10 +109,6 @@ Generates a [Cartesian product](https://en.wikipedia.org/wiki/Cartesian_product)
 
 One little gotcha I ran into: generator functions can only be enumerated once, so the inner `xs` generator needs to be a fresh copy each time through. To ensure this, the API requires a generator factory rather than a generator instance.
 
-### `filter(...).reduce(...)`
-
-Initially I had some complicated `reduce`s that were conditionally doing something based on some predicate. Extracting that logic to a `filter` step before the `reduce` really simplified the structure of the code!
-
 ### Recursion, oh my!
 
 Full disclosure: I initially solved part 2 using a iterative approach (`while (true) {...}` + a well placed `break`). But I wasn't happy with the structure, and especially the top-level variables I had to interact with from within the loop. On a whim, I asked Claude what a tail recursive rewrite might look like, and kind of liked it. I heavily modified it and added an [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE), and of course I decided to keep this version!
