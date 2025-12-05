@@ -21,9 +21,9 @@ const part2 = (function recursivelyRemoveAccessible(grid: Grid<string>, totalRem
 	const { nextGrid, removed } = enumerateGrid(seq(grid.height), seq(grid.width))
 		.filter(({ x, y }) => isAccessible(grid, x, y))
 		.reduce(
-			(acc, { x, y }) => ({
-				nextGrid: setCell(acc.nextGrid, x, y, "x"),
-				removed: acc.removed + 1,
+			({ nextGrid, removed }, { x, y }) => ({
+				nextGrid: setCell(nextGrid, x, y, "x"),
+				removed: removed + 1,
 			}),
 			{ nextGrid: grid, removed: 0 },
 		);
