@@ -20,10 +20,10 @@ const part1 = enumerateGrid(seq(grid.height), seq(grid.width))
 // not immediately obvious how to purely functionally express part2, so ...
 let part2 = 0;
 let part2Grid = grid;
-let lastRemoved: number;
+let removedInStep: number;
 
 do {
-	({ nextGrid: part2Grid, removed: lastRemoved } = enumerateGrid(
+	({ nextGrid: part2Grid, removed: removedInStep } = enumerateGrid(
 		seq(grid.height),
 		seq(grid.width),
 	).reduce(
@@ -34,8 +34,8 @@ do {
 		{ nextGrid: part2Grid, removed: 0 },
 	));
 
-	part2 += lastRemoved;
-} while (lastRemoved);
+	part2 += removedInStep;
+} while (removedInStep);
 
 console.log({ part1, part2 });
 
