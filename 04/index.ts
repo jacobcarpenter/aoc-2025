@@ -72,16 +72,20 @@ function* enumerateGridCoordinates(ys: () => Generator<number>, xs: () => Genera
 
 function seq(length: number, start = 0, step = 1) {
 	return function* () {
-		for (let value = start; value < start + length; value += step) {
-			yield value;
+		let offset = 0;
+		while (offset < length) {
+			yield start + offset;
+			offset += step;
 		}
 	};
 }
 
 function range(start: number, end: number, step = 1) {
 	return function* () {
-		for (let value = start; value <= end; value += step) {
+		let value = start;
+		while (value <= end) {
 			yield value;
+			value += step;
 		}
 	};
 }
