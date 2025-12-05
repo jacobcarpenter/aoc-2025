@@ -115,6 +115,10 @@ Full disclosure: I initially solved part 2 using a iterative approach (`while (t
 
 ### `.toSpliced(index, deleteCount, itemsToAdd...)`
 
-`toSpliced` is a handy option for immutably modifying an array. Before that, I used to do `[...arr.slice(0, index), item, ...arr.slice(index + 1)]`.
+`toSpliced` is a handy option for immutably modifying an array. Before that, I used to
+
+```ts
+[...arr.slice(0, index), item, ...arr.slice(index + 1)];
+```
 
 </details>
