@@ -72,7 +72,7 @@ function* enumerateGrid(ys: () => Generator<number>, xs: () => Generator<number>
 
 function seq(length: number, start = 0, step = 1) {
 	return function* () {
-		for (let value = start; value < length; value += step) {
+		for (let value = start; value < start + length; value += step) {
 			yield value;
 		}
 	};
