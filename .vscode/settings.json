@@ -5,5 +5,9 @@
 	"explorer.fileNesting.enabled": true,
 	"explorer.fileNesting.patterns": {
 		"*.ts": "${capture}.test.ts"
+	},
+	"workbench.editor.customLabels.enabled": true,
+	"workbench.editor.customLabels.patterns": {
+		"*/[0-1][0-9]/*": "${dirname}/${filename}.${extname}"
 	}
 }
