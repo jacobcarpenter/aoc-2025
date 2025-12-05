@@ -27,16 +27,10 @@ do {
 		seq(grid.height),
 		seq(grid.width),
 	).reduce(
-		({ nextGrid, removed }, { x, y }) => {
-			if (isAccessible(part2Grid, x, y)) {
-				return {
-					nextGrid: setCell(nextGrid, x, y, "x"),
-					removed: removed + 1,
-				};
-			}
-
-			return { nextGrid, removed };
-		},
+		(acc, { x, y }) =>
+			isAccessible(part2Grid, x, y) ?
+				{ nextGrid: setCell(acc.nextGrid, x, y, "x"), removed: acc.removed + 1 }
+			:	acc,
 		{ nextGrid: part2Grid, removed: 0 },
 	));
 
