@@ -91,3 +91,34 @@ Building the number from the array of digits would've been very easy—and proba
 I was on the lookout for potentially needing `BigInt`, but every thing stayed comfortably under `Number.MAX_SAFE_INTEGER`.
 
 </details>
+
+## `04`
+
+<details>
+<summary>Day 4 notes (possible spoilers)</summary>
+
+Oh boy, all the memes with this one! I love these grid based traversal ones, and I also like avoiding multidimensional arrays.
+
+### 2D data in a 1D array
+
+There's plenty already written about how to store/address 2D data in a 1D array. The math is very straightforward, and you can avoid multidimensional JS arrays.
+
+### `enumerateGrid`
+
+Generates a [Cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) of the two sequences. For this helper, we put the `ys` generator first, emphasizing that the sequence is generated in [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order).
+
+One little gotcha I ran into: generator functions can only be enumerated once, so the inner `xs` generator needs to be a fresh copy each time through. To ensure this, the API requires a generator factory rather than a generator instance.
+
+### `filter(...).reduce(...)`
+
+Initially I had some complicated `reduce`s that were conditionally doing something based on some predicate. Extracting that logic to a `filter` step before the `reduce` really simplified the structure of the code!
+
+### Recursion, oh my!
+
+Full disclosure: I initially solved part 2 using a iterative approach (`while (true) {...}` + a well placed `break`). But I wasn't happy with the structure, and especially the top-level variables I had to interact with from within the loop. On a whim, I asked Claude what a tail recursive rewrite might look like, and kind of liked it. I heavily modified it and added an [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE), and of course I decided to keep this version!
+
+### `.toSpliced(index, deleteCount, itemsToAdd...)`
+
+`toSpliced` is a handy option for immutably modifying an array. Before that, I used to do `[...arr.slice(0, index), item, ...arr.slice(index + 1)]`.
+
+</details>

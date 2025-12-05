@@ -15,16 +15,18 @@ const grid = input.split("\n").reduce(
 
 const part1 = enumerateGrid(seq(grid.height), seq(grid.width))
 	.filter(({ x, y }) => isAccessible(grid, x, y))
-	.toArray().length;
+	.reduce((acc) => acc + 1, 0);
 
 const part2 = (function recursivelyRemoveAccessible(grid: Grid<string>, totalRemoved = 0): number {
-	const { nextGrid, removed } = enumerateGrid(seq(grid.height), seq(grid.width)).reduce(
-		(acc, { x, y }) =>
-			isAccessible(grid, x, y) ?
-				{ nextGrid: setCell(acc.nextGrid, x, y, "x"), removed: acc.removed + 1 }
-			:	acc,
-		{ nextGrid: grid, removed: 0 },
-	);
+	const { nextGrid, removed } = enumerateGrid(seq(grid.height), seq(grid.width))
+		.filter(({ x, y }) => isAccessible(grid, x, y))
+		.reduce(
+			(acc, { x, y }) => ({
+				nextGrid: setCell(acc.nextGrid, x, y, "x"),
+				removed: acc.removed + 1,
+			}),
+			{ nextGrid: grid, removed: 0 },
+		);
 
 	return removed === 0 ? totalRemoved : (
 			recursivelyRemoveAccessible(nextGrid, totalRemoved + removed)
@@ -38,7 +40,7 @@ function isAccessible(grid: Grid<string>, x: number, y: number) {
 		getCell(grid, x, y) === "@" &&
 		getNeighbors(grid, x, y)
 			.filter((curr) => curr === "@")
-			.toArray().length < 4
+			.reduce((acc) => acc + 1, 0) < 4
 	);
 }
 
