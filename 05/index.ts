@@ -33,21 +33,18 @@ if (import.meta.main) {
 			const { index: endInStarts, found: endFound } = search(starts, end + 1);
 			const endingRangeIndex = endFound ? endInStarts : endInStarts - 1;
 
-			if (startingRangeIndex <= endingRangeIndex) {
-				const newStart = Math.min(start, starts[startingRangeIndex]!);
-				const newEnd = Math.max(end, ends[endingRangeIndex]!);
-
-				const removeCount = endingRangeIndex - startingRangeIndex + 1;
-
-				return {
-					starts: starts.toSpliced(startingRangeIndex, removeCount, newStart),
-					ends: ends.toSpliced(startingRangeIndex, removeCount, newEnd),
-				};
-			}
+			const { removeCount, newStart, newEnd } =
+				startingRangeIndex <= endingRangeIndex ?
+					{
+						removeCount: endingRangeIndex - startingRangeIndex + 1,
+						newStart: Math.min(start, starts[startingRangeIndex]!),
+						newEnd: Math.max(end, ends[endingRangeIndex]!),
+					}
+				:	{ removeCount: 0, newStart: start, newEnd: end };
 
 			return {
-				starts: starts.toSpliced(startingRangeIndex, 0, start),
-				ends: ends.toSpliced(startingRangeIndex, 0, end),
+				starts: starts.toSpliced(startingRangeIndex, removeCount, newStart),
+				ends: ends.toSpliced(startingRangeIndex, removeCount, newEnd),
 			};
 		},
 		{
