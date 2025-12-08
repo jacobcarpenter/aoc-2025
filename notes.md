@@ -20,6 +20,7 @@ Things I'll consider doing:
 - asking Copilot about a platform specific API for reading a file instead of / in addition to looking at the docs myself
 - after defining a method's API and hand-writing a few test cases, asking for a few more test cases
 - use AI to help sort through TypeScript type errors or help me realize my vision for a more expressive type declaration
+- ask for help debugging an unexpected result after writing my own implementation (sometimes this results in AI immediately identifying and correcting the issue, which is a bit of an overstep of my intended usage, but see below)
 
 Things I'll definitely do (after using AI):
 
