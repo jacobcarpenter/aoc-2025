@@ -4,7 +4,7 @@
 
 ### AI Usage
 
-Eric Wastl specifically states:
+Eric Wastl specifically [states](https://adventofcode.com/2025/about#faq_ai):
 
 > **Should I use AI to solve Advent of Code puzzles?** No. If you send a friend to the gym on your behalf, would you expect to get stronger? Advent of Code puzzles are designed to be interesting for humans to solve - no consideration is made for whether AI can or cannot solve a puzzle. If you want practice prompting an AI, there are almost certainly better exercises elsewhere designed with that in mind.
 
