@@ -36,10 +36,10 @@ const part2 = (function () {
 							terms: [...acc.terms, Number(curr.slice(0, -1).trimEnd())],
 						}
 					:	{ ...acc, terms: [...acc.terms, Number(curr)] },
-				{ op: "" as "*" | "+", terms: [] as number[] },
+				{ op: undefined as "*" | "+" | undefined, terms: [] as number[] },
 			),
 		)
-		.map(({ op, terms }) => terms.reduce(createEvaluator(op)))
+		.map(({ op, terms }) => terms.reduce(createEvaluator(op!)))
 		.reduce((acc, curr) => acc + curr);
 })();
 
