@@ -33,9 +33,9 @@ const part2 = (function () {
 					/[+*]$/.test(curr) ?
 						{
 							op: curr.at(-1)! as "*" | "+",
-							terms: [...acc.terms, Number(curr.slice(0, -1).trim())],
+							terms: [...acc.terms, Number(curr.slice(0, -1).trimEnd())],
 						}
-					:	{ ...acc, terms: [...acc.terms, Number(curr.trim())] },
+					:	{ ...acc, terms: [...acc.terms, Number(curr)] },
 				{ op: "" as "*" | "+", terms: [] as number[] },
 			),
 		)
