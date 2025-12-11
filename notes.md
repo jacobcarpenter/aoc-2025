@@ -123,3 +123,14 @@ Full disclosure: I initially solved part 2 using a iterative approach (`while (t
 ```
 
 </details>
+
+## `08`
+
+<details>
+<summary>Day 8 notes (possible spoilers)</summary>
+
+### Disclaimer / apology
+
+I don't know if it's the nature of the problem, or a failure of my imagination, but I was least satisfied with my solution to this one. It felt very brute force / inelegant; and no forms of the code I wrote ever really seemed to capture the "essence" of the problem.
+
+</details>

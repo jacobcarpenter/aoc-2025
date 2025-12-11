@@ -18,34 +18,36 @@ const junctionBoxes = input.split("\n").map(
 	}),
 );
 
-const circuitConnections = junctionBoxes
-	.reduce((acc, curr, index) => {
-		for (const { paired, offset } of junctionBoxes
-			.slice(index + 1)
-			.map((paired, offsetIndex) => ({ paired, offset: offsetIndex + index + 1 }))) {
-			acc.set(
-				`${index}:${offset}`,
-				Math.sqrt(
-					(curr.x - paired.x) ** 2 + (curr.y - paired.y) ** 2 + (curr.z - paired.z) ** 2,
-				),
-			);
-		}
+const allPairingsWithDistances = junctionBoxes.reduce((acc, curr, index) => {
+	for (const { paired, offset } of junctionBoxes
+		.slice(index + 1)
+		.map((paired, offsetIndex) => ({ paired, offset: offsetIndex + index + 1 }))) {
+		acc.set(
+			`${index}:${offset}`,
+			Math.sqrt(
+				(curr.x - paired.x) ** 2 + (curr.y - paired.y) ** 2 + (curr.z - paired.z) ** 2,
+			),
+		);
+	}
 
-		return acc;
-	}, new Map<string, number>()) // all pairings w/ distances
+	return acc;
+}, new Map<string, number>());
+
+const sortedPairings = allPairingsWithDistances
 	.entries()
 	.toArray()
-	.toSorted(([, distA], [, distZ]) => distA - distZ) // sorted by closest
-	.map(([key, value]) => {
-		const [firstId, secondId] = key.split(":").map((x) => Number(x));
-		return {
-			firstId: firstId!,
-			secondId: secondId!,
-			first: junctionBoxes[firstId!],
-			second: junctionBoxes[secondId!],
-			distance: value,
-		};
-	}); // mapped to a pairing descriptor with indexes, coordinate values, and distance
+	.toSorted(([, distA], [, distZ]) => distA - distZ); // closest first
+
+const circuitConnections = sortedPairings.map(([key, value]) => {
+	const [firstId, secondId] = key.split(":").map((x) => Number(x));
+	return {
+		firstId: firstId!,
+		secondId: secondId!,
+		first: junctionBoxes[firstId!],
+		second: junctionBoxes[secondId!],
+		distance: value,
+	};
+});
 
 const part1 = (function () {
 	const junctionCircuits = Array.from({ length: junctionBoxes.length }, (_, i) => i + 1);
